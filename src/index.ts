@@ -4,13 +4,13 @@ import debug from "debug";
 import { thingsRouter } from "./routers/thingsRouter.js";
 
 const createDebug = debug("/things");
-
 const app = express();
 
 const port = 4008;
-app.use(express.json());
 
+app.use(express.json());
 app.use("/", thingsRouter);
+app.use(express.json());
 
 app.listen(port, () => {
   createDebug(`A server is listening in the port ${port}`);

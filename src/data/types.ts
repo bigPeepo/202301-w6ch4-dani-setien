@@ -1,5 +1,8 @@
-export interface GarlicBreadFact {
-  id: number;
+export interface GarlicBreadFact extends UnidentifiedGarlicBreadFact {
+  id: string;
+}
+
+export interface UnidentifiedGarlicBreadFact {
   fact: string;
 }
 
