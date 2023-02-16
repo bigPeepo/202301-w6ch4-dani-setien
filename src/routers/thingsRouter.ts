@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   addThing,
+  changeThing,
   deleteThing,
   getThingDetail,
   getThings,
@@ -16,3 +17,5 @@ thingsRouter.get("/things/:id", getThingDetail);
 thingsRouter.delete("/things/:id", deleteThing);
 
 thingsRouter.post("/things", addThing);
+
+thingsRouter.put("/things", changeThing);

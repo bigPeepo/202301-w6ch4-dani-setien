@@ -1,7 +1,11 @@
+import { debug } from "console";
 import type { Request, Response } from "express";
 import { nanoid } from "nanoid";
 import { garlicBreadFacts } from "../data/garlicBreadFacts.js";
-import { type UnidentifiedGarlicBreadFact } from "../data/types.js";
+import {
+  type GarlicBreadFact,
+  type UnidentifiedGarlicBreadFact,
+} from "../data/types.js";
 
 export const getThings = (req: Request, res: Response) => {
   res.status(200).json({ garlicBreadFacts });
@@ -36,6 +40,25 @@ export const addThing = async (
   const newGarlicBreadFact = { id: nanoid(), fact: req.body.fact };
 
   garlicBreadFacts.push(newGarlicBreadFact);
+
+  res.status(200).json({ garlicBreadFacts });
+};
+
+export const changeThing = async (
+  req: Request<
+    Record<string, unknown>,
+    Record<string, unknown>,
+    GarlicBreadFact
+  >,
+  res: Response
+) => {
+  const { id, fact } = req.body;
+
+  const indexOfTargetFact = garlicBreadFacts.findIndex(
+    (fact) => fact.id === id
+  );
+
+  garlicBreadFacts[indexOfTargetFact].fact = fact;
 
   res.status(200).json({ garlicBreadFacts });
 };
